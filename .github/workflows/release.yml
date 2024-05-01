@@ -11,9 +11,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Python 3.7
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.7
 
       - name: Install build dependencies
         run: python -m pip install build wheel
@@ -24,7 +24,7 @@ jobs:
 
       - name: Publish package to PyPI
         if: github.repository == 'MajewskiLukasz/torch_image2vector' && github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
-          password: ${{ secrets.pypi_password }}
+          password: ${{ secrets.PIPY }}
